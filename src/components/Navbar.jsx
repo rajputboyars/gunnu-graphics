@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 const Navbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
     const navRef = useRef(null);
     const linksRef = useRef([]);
 
@@ -13,7 +14,7 @@ const Navbar = () => {
             opacity: 0,
             y: -20,
             stagger: 0.2,
-            delay:3,
+            delay: 3,
             duration: 1,
             ease: 'power2.out',
         });
@@ -36,6 +37,10 @@ const Navbar = () => {
         };
     }, []);
 
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen); // Toggle the menu visibility
+    };
+
     return (
         <nav
             ref={navRef}
@@ -45,12 +50,39 @@ const Navbar = () => {
                 {/* Logo */}
                 <div className="text-white font-bold text-2xl">
                     <a href="/">
-                        <img src="/logo/logo.png" alt="logo" className='max-w-16 rounded-full' />
+                        <img src="/logo/logo.png" alt="logo" className="max-w-16 rounded-full" />
                     </a>
                 </div>
 
+                {/* Hamburger Button for Mobile */}
+                <div className="lg:hidden flex items-center">
+                    <button
+                        onClick={toggleMenu}
+                        className="text-white focus:outline-none"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                    </button>
+                </div>
+
                 {/* Navigation Links */}
-                <ul className="flex space-x-6 text-white">
+                <ul
+                    className={`${
+                        isMenuOpen ? 'flex' : 'hidden'
+                    } flex-col lg:flex lg:flex-row lg:space-x-6 text-white absolute lg:static top-16 left-0 right-0 bg-black lg:bg-transparent space-y-4 lg:space-y-0 p-6 lg:p-0`}
+                >
                     {['Home', 'About', 'Portfolio', 'Contact'].map((link, index) => (
                         <li
                             key={index}
