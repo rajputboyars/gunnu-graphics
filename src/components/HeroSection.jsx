@@ -2,10 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import SplitText from "gsap-trial/SplitText"
-// import { SplitText } from 'gsap/SplitText';
-
-gsap.registerPlugin(SplitText);
 
 const HeroSection = () => {
   const headlineRef = useRef(null);
@@ -13,13 +9,25 @@ const HeroSection = () => {
   const backgroundRef = useRef(null);
 
   useEffect(() => {
-    // Split-text animation
-    const split = new SplitText(headlineRef.current, { type: 'words,chars' });
-    gsap.from(split.chars, {
+    // Split the headline text into spans
+    const text = headlineRef.current.textContent;
+    const splitText = text
+      .split('')
+      .map((char) => (char === ' ' ? '&nbsp;' : char))
+      .map((char) => `<span class="inline-block">${char}</span>`)
+      .join('');
+
+    headlineRef.current.innerHTML = splitText;
+
+    // Select all character spans
+    const charSpans = headlineRef.current.querySelectorAll('span');
+
+    // Animate the characters
+    gsap.from(charSpans, {
       opacity: 0,
       y: 50,
       stagger: 0.05,
-      delay:3,
+      delay: 3,
       duration: 1,
       ease: 'power2.out',
     });
@@ -29,14 +37,7 @@ const HeroSection = () => {
       opacity: 0,
       scale: 0.8,
       duration: 1,
-      delay: 3.2,
-      ease: 'elastic.out(1, 0.5)',
-    });
-    gsap.to(buttonRef.current, {
-      opacity: 1,
-      scale: 0.8,
-      duration: 1,
-      delay: 3.2,
+      delay: 2.5,
       ease: 'elastic.out(1, 0.5)',
     });
 
