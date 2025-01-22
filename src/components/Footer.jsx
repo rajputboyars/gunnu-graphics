@@ -47,12 +47,13 @@ const Footer = () => {
               <i className="fab fa-linkedin-in text-3xl"></i>
             </a>
           </div>
+
+          {/* Copyright Notice */}
+          <div className=" text-center text-white text-sm">
+            <p>&copy; {new Date().getFullYear()} Gunnu Graphics. All rights reserved.</p>
+          </div>
         </div>
 
-        {/* Copyright Notice */}
-        <div className="mt-8 text-center text-white text-sm">
-          <p>&copy; {new Date().getFullYear()} Gunnu Graphics. All rights reserved.</p>
-        </div>
       </div>
     </footer>
   );
