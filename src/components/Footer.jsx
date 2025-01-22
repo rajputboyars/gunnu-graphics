@@ -23,8 +23,8 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="text-white">
-            <ul className="space-x-4 flex">
+          <div className="text-white ">
+            <ul className="space-x-4 flex flex-col md:flex-row">
               <li><a href="#about" className="hover:text-gray-300">About</a></li>
               <li><a href="#portfolio" className="hover:text-gray-300">Portfolio</a></li>
               <li><a href="#contact" className="hover:text-gray-300">Contact</a></li>
@@ -33,7 +33,7 @@ const Footer = () => {
           </div>
 
           {/* Social Media Icons */}
-          <div className="text-white space-x-6">
+          <div className="text-white flex flex-col md:flex-row space-x-6">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
               <i className="fab fa-facebook-f text-3xl"></i>
             </a>

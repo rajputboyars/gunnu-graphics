@@ -61,12 +61,12 @@ const PortfolioSection = () => {
         <h2 className="text-4xl font-bold text-center mb-10">Portfolio</h2>
 
         {/* Filter Buttons */}
-        <div className="flex justify-center space-x-4 mb-10">
+        <div className="flex items-center md:justify-center overflow-auto space-x-4 mb-10">
           {['all', 'branding', 'illustration', 'web design'].map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
+              className={`px-4 py-2 text-sm font-medium rounded-full text-nowrap transition-all ${
                 selectedCategory === category
                   ? 'bg-pink-500 text-white'
                   : 'bg-gray-300 text-gray-800 hover:bg-gray-400'
